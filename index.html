@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanialEchoes Studio | We Build Websites in Less Than 1 Week</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': {
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        },
+                        'dark': {
+                            800: '#0f0f12',
+                            900: '#0a0a0d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        .glow {
+            box-shadow: 0 0 60px -15px rgba(99, 102, 241, 0.3);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.5); }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold text-sm">DE</div>
+                    <span class="text-lg font-semibold">DanialEchoes</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-sm text-gray-400 hover:text-white transition-colors">Services</a>
+                    <a href="#process" class="text-sm text-gray-400 hover:text-white transition-colors">How It Works</a>
+                    <a href="#portfolio" class="text-sm text-gray-400 hover:text-white transition-colors">Portfolio</a>
+                    <a href="#pricing" class="text-sm text-gray-400 hover:text-white transition-colors">Pricing</a>
+                    <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+                </div>
+                <a href="#contact" class="hidden md:inline-flex px-5 py-2 bg-gradient-to-r from-primary-500 to-purple-600 rounded-full text-sm font-medium hover:opacity-90 transition-opacity">
+                    Get Started
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark-800 border-t border-white/5">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-400 hover:text-white transition-colors">Services</a>
+                <a href="#process" class="block text-gray-400 hover:text-white transition-colors">How It Works</a>
+                <a href="#portfolio" class="block text-gray-400 hover:text-white transition-colors">Portfolio</a>
+                <a href="#pricing" class="block text-gray-400 hover:text-white transition-colors">Pricing</a>
+                <a href="#contact" class="block text-gray-400 hover:text-white transition-colors">Contact</a>
+                <a href="#contact" class="block px-5 py-2 bg-gradient-to-r from-primary-500 to-purple-600 rounded-full text-sm font-medium text-center">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 via-transparent to-transparent"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 mb-8 fade-in">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span class="text-sm text-gray-400">Available for new projects</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight fade-in" style="animation-delay: 0.1s">
+                We Build Websites
+                <span class="gradient-text block">in Less Than 1 Week</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 fade-in" style="animation-delay: 0.2s">
+                DanialEchoes Studio crafts premium, high-converting websites for ambitious businesses. From concept to launch in 7 days or less.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in" style="animation-delay: 0.3s">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary-500 to-purple-600 rounded-full text-base font-semibold hover:opacity-90 transition-opacity pulse-glow">
+                    Start Your Project
+                </a>
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-full text-base font-semibold hover:bg-white/10 transition-colors">
+                    View Our Work
+                </a>
+            </div>
+            <div class="flex items-center justify-center gap-8 mt-16 fade-in" style="animation-delay: 0.4s">
+                <div class="text-center">
+                    <div class="text-3xl font-bold gradient-text">130+</div>
+                    <div class="text-sm text-gray-500">Websites Built</div>
+                </div>
+                <div class="w-px h-12 bg-white/10"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold gradient-text">7</div>
+                    <div class="text-sm text-gray-500">Day Delivery</div>
+                </div>
+                <div class="w-px h-12 bg-white/10"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold gradient-text">98%</div>
+                    <div class="text-sm text-gray-500">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Our Services</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Everything You Need to Launch</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">We handle everything from design to deployment, so you can focus on running your business.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Custom Web Design</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Bespoke designs tailored to your brand identity. No templates, no compromises—just unique, stunning visuals.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Responsive Development</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Pixel-perfect on every device. Your website will look flawless on desktops, tablets, and smartphones.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Lightning Fast Performance</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Optimized for speed. We ensure sub-second load times that boost SEO and user experience.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">SEO Optimization</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Built with SEO best practices from day one. Get found by your customers on Google.</p>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">CMS Integration</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Easy-to-use content management systems. Update your website without touching code.</p>
+                </div>
+                <!-- Service Card 6 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover gradient-border">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">SSL & Security</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Enterprise-grade security included. SSL certificates, firewalls, and daily backups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="process" class="py-24 px-4 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">How It Works</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">From Zero to Launch in 4 Steps</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">Our streamlined process ensures your website is delivered on time, every time.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="text-7xl font-black text-white/5 absolute -top-4 -left-2">01</div>
+                    <div class="relative pt-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold mb-4">1</div>
+                        <h4 class="text-xl font-semibold mb-3">Discovery Call</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">We hop on a 30-minute call to understand your business, goals, and design preferences.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="text-7xl font-black text-white/5 absolute -top-4 -left-2">02</div>
+                    <div class="relative pt-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold mb-4">2</div>
+                        <h4 class="text-xl font-semibold mb-3">Design & Prototype</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Within 48 hours, you'll receive a stunning design mockup for your approval.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div class="text-7xl font-black text-white/5 absolute -top-4 -left-2">03</div>
+                    <div class="relative pt-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold mb-4">3</div>
+                        <h4 class="text-xl font-semibold mb-3">Development</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Our team builds your website with clean code, optimized for speed and conversions.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative">
+                    <div class="text-7xl font-black text-white/5 absolute -top-4 -left-2">04</div>
+                    <div class="relative pt-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold mb-4">4</div>
+                        <h4 class="text-xl font-semibold mb-3">Launch & Support</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">We deploy your site, handle DNS setup, and provide 30 days of free support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Our Work</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Recent Projects</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">Take a look at some of the websites we've built for our clients.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-primary-500/20 to-purple-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">DE</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">E-commerce</span>
+                            <h4 class="text-xl font-semibold mt-1">Luxe Fashion Store</h4>
+                            <p class="text-gray-400 text-sm mt-2">Custom Shopify theme with 3D product views</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">GH</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">SaaS</span>
+                            <h4 class="text-xl font-semibold mt-1">GreenHealth Platform</h4>
+                            <p class="text-gray-400 text-sm mt-2">Full-stack web app with subscription billing</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">RQ</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">Restaurant</span>
+                            <h4 class="text-xl font-semibold mt-1">Route 66 Diner</h4>
+                            <p class="text-gray-400 text-sm mt-2">Online ordering system with real-time tracking</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 4 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">NX</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">Corporate</span>
+                            <h4 class="text-xl font-semibold mt-1">NexGen Solutions</h4>
+                            <p class="text-gray-400 text-sm mt-2">Enterprise website with client portal integration</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 5 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-pink-500/20 to-rose-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">BW</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">Wedding</span>
+                            <h4 class="text-xl font-semibold mt-1">Bella & William</h4>
+                            <p class="text-gray-400 text-sm mt-2">Elegant wedding site with RSVP management</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 6 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-dark-800 card-hover">
+                    <div class="aspect-video bg-gradient-to-br from-yellow-500/20 to-amber-600/20 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-white/10">FL</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs text-primary-400 uppercase tracking-wider">Real Estate</span>
+                            <h4 class="text-xl font-semibold mt-1">Frontline Properties</h4>
+                            <p class="text-gray-400 text-sm mt-2">Property listing platform with virtual tours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-4 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Pricing</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Transparent Pricing, No Surprises</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">Choose the plan that fits your business needs. All plans include our 7-day delivery guarantee.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="p-8 rounded-2xl bg-gradient-to-b from-primary-500/20 to-purple-600/20 border border-primary-500/30 card-hover relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary-500 to-purple-600 rounded-full text-xs font-semibold">Most Popular</div>
+                    <h4 class="text-lg font-semibold mb-2">Starter</h4>
+                    <p class="text-sm text-gray-400 mb-6">Perfect for small businesses</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$999</span>
+                        <span class="text-gray-400 text-sm">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Up to 5 pages
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Mobile responsive
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Contact form
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            SSL certificate
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            7-day delivery
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center bg-white/5 border border-white/10 rounded-xl font-medium hover:bg-white/10 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Professional Plan -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
+                    <h4 class="text-lg font-semibold mb-2">Professional</h4>
+                    <p class="text-sm text-gray-400 mb-6">For growing businesses</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$2,499</span>
+                        <span class="text-gray-400 text-sm">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Up to 10 pages
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Custom animations
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            CMS integration
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            SEO optimization
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Analytics setup
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            30-day support
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center bg-gradient-to-r from-primary-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition-opacity">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Enterprise Plan -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
+                    <h4 class="text-lg font-semibold mb-2">Enterprise</h4>
+                    <p class="text-sm text-gray-400 mb-6">For large-scale projects</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$4,999</span>
+                        <span class="text-gray-400 text-sm">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Unlimited pages
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Custom functionality
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Third-party integrations
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            E-commerce ready
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Priority support
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            90-day support
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center bg-white/5 border border-white/10 rounded-xl font-medium hover:bg-white/10 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Testimonials</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">What Our Clients Say</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"DanialEchoes Studio delivered our website in just 5 days. The quality exceeded our expectations and our conversion rate increased by 40% within the first month."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold">SK</div>
+                        <div>
+                            <div class="font-semibold">Sarah Kim</div>
+                            <div class="text-sm text-gray-400">CEO, Luxe Fashion</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"The team understood our vision perfectly. They built a SaaS platform that not only looks incredible but also performs flawlessly. Highly recommend!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center font-bold">MR</div>
+                        <div>
+                            <div class="font-semibold">Marcus Rodriguez</div>
+                            <div class="text-sm text-gray-400">Founder, GreenHealth</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"From the initial call to launch, everything was seamless. Our restaurant's online orders increased by 60% after the new website went live."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center font-bold">JT</div>
+                        <div>
+                            <div class="font-semibold">James Thompson</div>
+                            <div class="text-sm text-gray-400">Owner, Route 66 Diner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 bg-dark-800/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Get In Touch</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Let's Build Something Amazing</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">Ready to launch your website? Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+            <form id="contactForm" class="p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                        <input type="text" name="firstName" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors" placeholder="John">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                        <input type="text" name="lastName" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors" placeholder="Doe">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors" placeholder="john@company.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Project Type</label>
+                    <select name="projectType" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-primary-500 transition-colors">
+                        <option value="" class="bg-dark-800">Select a project type</option>
+                        <option value="business" class="bg-dark-800">Business Website</option>
+                        <option value="ecommerce" class="bg-dark-800">E-commerce Store</option>
+                        <option value="portfolio" class="bg-dark-800">Portfolio</option>
+                        <option value="saas" class="bg-dark-800">SaaS Platform</option>
+                        <option value="other" class="bg-dark-800">Other</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
+                    <select name="budget" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-primary-500 transition-colors">
+                        <option value="" class="bg-dark-800">Select your budget</option>
+                        <option value="999" class="bg-dark-800">Starter ($999)</option>
+                        <option value="2499" class="bg-dark-800">Professional ($2,499)</option>
+                        <option value="4999" class="bg-dark-800">Enterprise ($4,999)</option>
+                        <option value="custom" class="bg-dark-800">Custom Budget</option>
+                    </select>
+                </div>
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Project Details</label>
+                    <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors resize-none" placeholder="Tell us about your project..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary-500 to-purple-600 rounded-xl font-semibold text-base hover:opacity-90 transition-opacity pulse-glow">
+                    Send Message
+                </button>
+                <p id="formSuccess" class="hidden mt-4 text-center text-green-400">Thank you! We'll be in touch within 24 hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center font-bold">DE</div>
+                        <span class="text-xl font-bold">DanialEchoes Studio</span>
+                    </div>
+                    <p class="text-gray-400 max-w-sm mb-6">We craft premium, high-converting websites for ambitious businesses. From concept to launch in 7 days or less.</p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Services</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition-colors text-sm">How It Works</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors text-sm">Portfolio</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors text-sm">Pricing</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400 text-sm">hello@danialechoes.com</li>
+                        <li class="text-gray-400 text-sm">+1 (555) 123-4567</li>
+                        <li class="text-gray-400 text-sm">Remote / Worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">&copy; 2026 DanialEchoes Studio. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formSuccess.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formSuccess.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div > div').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
